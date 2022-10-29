@@ -3,11 +3,23 @@ package main
 import (
 	"fmt"
 
-	stringutil "github.com/mehoggan/stringutil-go"
+	vinyl_types "github.com/mehoggan/vinyl-collection-service-go/types"
 )
 
 func main() {
-	fmt.Println(stringutil.Reverse("Hello"))
-	fmt.Println(stringutil.ToUpper("Hello"))
-	fmt.Println(stringutil.ToLower("Hello"))
+	var albums = []vinyl_types.Album{
+		{ID: "1",
+			Title:  "Blue Train",
+			Artist: "John Coltrane",
+			Price:  56.99},
+		{ID: "2",
+			Title:  "Jeru",
+			Artist: "Gerry Mulligan",
+			Price:  17.99},
+		{ID: "3",
+			Title:  "Sarah Vaughan and Clifford Brown",
+			Artist: "Sarah Vaughan",
+			Price:  39.99},
+	}
+	fmt.Printf("%v", albums)
 }
