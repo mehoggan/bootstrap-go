@@ -56,7 +56,12 @@ func createRootDir() (string, error) {
 func main() {
 	rootDir, settingsFile := setupForWikiService()
 	wikiwebRoutes := wikiapi.InitializeEndpoints(settingsFile)
-	http.HandleFunc("/view/", wikiwebRoutes.ViewHandler)
+	http.HandleFunc("/view/",
+		wikiwebRoutes.MakeHandler(wikiwebRoutes.ViewHandler))
+	http.HandleFunc("/edit/",
+		wikiwebRoutes.MakeHandler(wikiwebRoutes.EditHandler))
+	http.HandleFunc("/save/",
+		wikiwebRoutes.MakeHandler(wikiwebRoutes.SaveHandler))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 	defer os.RemoveAll(rootDir)
 }
